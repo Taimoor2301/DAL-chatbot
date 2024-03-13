@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'gotham-bold';
+    src: url('../public/Fonts/Gotham-Bold.otf') format('truetype');
+    /* Adjust the path and format based on your font file */
+}
+@font-face {
+    font-family: 'gotham-light';
+    src: url('../public/Fonts/Gotham-Light.otf') format('truetype');
+    /* Adjust the path and format based on your font file */
+}
+@font-face {
+    font-family: 'gotham-medium';
+    src: url('../public/Fonts/GothamMedium_1.ttf') format('truetype');
+    /* Adjust the path and format based on your font file */
+}
+
+#message-area::-webkit-scrollbar-thumb{
+    border-radius: 20px;
+    background-color: rgb(90, 90, 90); 
+}
+
+#message-area::-webkit-scrollbar{
+    background-color: rgb(61, 61, 61);
+    border-radius: 10px;
+    width: 8px;
+}
+#history-scroll::-webkit-scrollbar{
+    background-color: rgb(61, 61, 61);
+    border-radius: 10px;
+    width: 8px;
+}
+
+#history-scroll::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: rgb(90, 90, 90);
+}
+
