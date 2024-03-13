@@ -55,19 +55,19 @@ export default function Chat() {
     setRestored(true);
   }
 
-  useEffect(() => {
-    setHistory(JSON.parse(localStorage.getItem("history")) || []);
-    setChatHistory(JSON.parse(localStorage.getItem("chat")) || []);
-  }, []);
+  // useEffect(() => {
+  //   setHistory(JSON.parse(localStorage.getItem("history")) || []);
+  //   setChatHistory(JSON.parse(localStorage.getItem("chat")) || []);
+  // }, []);
 
-  useEffect(() => {
-    if (chatHistory.length) {
-      localStorage.setItem("chat", JSON.stringify(chatHistory));
-    }
-    if (history.length) {
-      localStorage.setItem("history", JSON.stringify(history));
-    }
-  }, [chatHistory, history]);
+  // useEffect(() => {
+  //   if (chatHistory.length) {
+  //     localStorage.setItem("chat", JSON.stringify(chatHistory));
+  //   }
+  //   if (history.length) {
+  //     localStorage.setItem("history", JSON.stringify(history));
+  //   }
+  // }, [chatHistory, history]);
 
   async function handelSubmit(e) {
     e.preventDefault();
