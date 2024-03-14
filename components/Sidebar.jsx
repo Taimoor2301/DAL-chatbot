@@ -35,7 +35,7 @@ export default function Sidebar({ startNewChat, restoreChat, refrehHistory }) {
         )}
       </AnimatePresence>
       <header className="flex justify-end items-center relative top-5 pb-10">
-        <div className="w-32 absolute left-0">
+        <div className="w-32 absolute right-0">
           <img
             src="/logos/logo-white.png"
             className="max-w-full object-contain"

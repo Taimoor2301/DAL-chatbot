@@ -9,7 +9,7 @@ export default function SettingsModal({ toggle }) {
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0 }}
-      className="w-screen h-screen top-0 left-0 backdrop-blur-sm fixed z-[999999] flex justify-center items-center bg-primary/10"
+      className="w-screen h-screen top-0 right-0 backdrop-blur-sm fixed z-[999999] flex justify-center items-center bg-primary/10"
     >
       <div
         onClick={(e) => e.stopPropagation()}

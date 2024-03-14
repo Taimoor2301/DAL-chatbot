@@ -24,6 +24,8 @@ export default function Chat() {
     text: "Error generating response",
   });
 
+  const [newMessage, setNewMessage] = useState(null);
+
   function startNewChat() {
     if (chatHistory.length === 0 || history.length === 0) return;
     setHistory([]);
@@ -55,20 +57,6 @@ export default function Chat() {
     setRestored(true);
   }
 
-  // useEffect(() => {
-  //   setHistory(JSON.parse(localStorage.getItem("history")) || []);
-  //   setChatHistory(JSON.parse(localStorage.getItem("chat")) || []);
-  // }, []);
-
-  // useEffect(() => {
-  //   if (chatHistory.length) {
-  //     localStorage.setItem("chat", JSON.stringify(chatHistory));
-  //   }
-  //   if (history.length) {
-  //     localStorage.setItem("history", JSON.stringify(history));
-  //   }
-  // }, [chatHistory, history]);
-
   async function handelSubmit(e) {
     e.preventDefault();
     setRestored(false);
@@ -82,7 +70,8 @@ export default function Chat() {
       setChatError((p) => ({ ...p, status: false }));
       const res = await axios.post("/api/chat", { question, history });
       setHistory((p) => [...p, [question, res.data.text]]);
-      setChatHistory((p) => [...p, { from: "api", text: res.data.text }]);
+      // setChatHistory((p) => [...p, { from: "api", text: res.data.text }]);
+      setNewMessage({ from: "api", text: res.data.text });
       //   console.log(res.data.text);
     } catch (error) {
       console.log(error);
@@ -109,10 +98,12 @@ export default function Chat() {
     try {
       setLoading(true);
       setChatError((p) => ({ ...p, status: false }));
+      console.log({ question, history });
       const res = await axios.post("/api/chat", { question, history });
       setHistory((p) => [...p, [question, res.data.text]]);
-      setChatHistory((p) => [...p, { from: "api", text: res.data.text }]);
+      // setChatHistory((p) => [...p, { from: "api", text: res.data.text }]);
       //   console.log(res.data.text);
+      setNewMessage({ from: "api", text: res.data.text });
     } catch (error) {
       console.log(error);
       setChatError((p) => ({ ...p, status: true }));
@@ -125,7 +116,7 @@ export default function Chat() {
     <Layout>
       <main className="h-screen overflow-hidden bg-neutral-800 w-full flex font-primaryLight">
         <motion.div
-          initial={{ translateX: "-100%" }}
+          initial={{ translateX: "100%" }}
           animate={{
             translateX: "0",
             transition: { delay: 0.5, duration: 0.5 },
@@ -150,6 +141,9 @@ export default function Chat() {
           {chatHistory.length > 0 && (
             <MessageArea
               chatHistory={chatHistory}
+              setChatHistory={setChatHistory}
+              newMessage={newMessage}
+              setNewMessage={setNewMessage}
               error={chatError}
               loading={loading}
               regenerate={regenerate}
@@ -159,9 +153,16 @@ export default function Chat() {
           <motion.form
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0, transition: { delay: 1.25 } }}
-            className="flex bg-neutral-200 p-2 rounded-lg shadow-[0_0_10px] max-w-4xl w-full shadow-primary"
+            className="flex gap-3 bg-neutral-200 p-2 rounded-lg shadow-[0_0_10px] max-w-4xl w-full shadow-primary"
             onSubmit={handelSubmit}
           >
+            <button
+              type="submit"
+              disabled={loading}
+              className="pr-4 text-3xl flex justify-center items-center text-neutral-800 disabled:text-gray-600 hover:text-primary2 transition-all duration-300"
+            >
+              {loading ? <LoadingDots /> : <IoMdSend className="" />}
+            </button>
             <textarea
               type="text"
               disabled={loading}
@@ -172,13 +173,6 @@ export default function Chat() {
               className="w-full p-2 rounded border-none outline-none bg-transparent"
               placeholder="Type something..."
             />
-            <button
-              type="submit"
-              disabled={loading}
-              className="pr-4 text-3xl flex justify-center items-center text-neutral-800 disabled:text-gray-600 hover:text-primary2 transition-all duration-300"
-            >
-              {loading ? <LoadingDots /> : <IoMdSend className="" />}
-            </button>
           </motion.form>
         </div>
       </main>
