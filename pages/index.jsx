@@ -68,7 +68,11 @@ export default function Chat() {
     try {
       setLoading(true);
       setChatError((p) => ({ ...p, status: false }));
-      const res = await axios.post("/api/chat", { question, history });
+      const res = await axios.post(
+        "/api/chat",
+        { question, history },
+        { timeout: 30000 }
+      );
       setHistory((p) => [...p, [question, res.data.text]]);
       // setChatHistory((p) => [...p, { from: "api", text: res.data.text }]);
       setNewMessage({ from: "api", text: res.data.text });
