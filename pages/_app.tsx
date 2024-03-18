@@ -11,7 +11,7 @@ const inter = Inter({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={inter.variable}>
+    <main className={inter.variable} dir="rtl">
       <AuthProvider>
         <Component {...pageProps} />
       </AuthProvider>
