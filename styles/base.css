@@ -56,3 +56,47 @@
 .blinking-text {
     animation: blink 0.3s infinite;
 }
+
+.custom-range {
+    -webkit-appearance: none;
+    appearance: none;
+    /* Hides the default appearance */
+    width: 100%;
+    /* Set width of the range input */
+    height: 7px;
+    /* Set height of the range input */
+    border-radius: 3px;
+    /* Set border radius */
+    background: #d8d8d8;
+    /* Set background color */
+    outline: none;
+    /* Remove outline */
+}
+
+.custom-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Hides the default appearance */
+    width: 15px;
+    /* Set width of the thumb */
+    height: 15px;
+    /* Set height of the thumb */
+    border-radius: 50%;
+    /* Make the thumb circular */
+    background: rgb(21, 112, 21);
+    /* Set color of the thumb */
+    cursor: pointer;
+    /* Change cursor on hover */
+}
+
+.custom-range::-moz-range-thumb {
+    width: 15px;
+    /* Set width of the thumb */
+    height: 15px;
+    /* Set height of the thumb */
+    border-radius: 50%;
+    /* Make the thumb circular */
+    background: #2b2b2b;
+    /* Set color of the thumb */
+    cursor: pointer;
+    /* Change cursor on hover */
+}
