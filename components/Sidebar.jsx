@@ -10,6 +10,7 @@ import { IoLogOut } from "react-icons/io5";
 import PlanModal from "./PlanModal";
 import useAuth from "../context/AuthContext";
 import SettingsModal from "./SettingsModal";
+import Link from "next/link";
 
 export default function Sidebar({ startNewChat, restoreChat, refrehHistory }) {
   const [history, setHistory] = useState([]);
@@ -114,6 +115,13 @@ export default function Sidebar({ startNewChat, restoreChat, refrehHistory }) {
           <FaRegUserCircle />
           Profile
         </div>
+        <Link
+          href="/playground"
+          className="flex items-center gap-2 font-primaryLight  hover:bg-primary2 p-2 rounded-lg shadow-sm cursor-pointer bg-neutral-800 font-semibold transition-all"
+        >
+          <GrUpgrade />
+          Playground
+        </Link>
       </div>
     </div>
   );
